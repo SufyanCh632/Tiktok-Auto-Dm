@@ -1,0 +1,12 @@
+flask
+playwright
+pandas
+
+Install browsers:
+playwright install
+
+Run Login: 
+python login.py
+
+run project:
+python app.py
