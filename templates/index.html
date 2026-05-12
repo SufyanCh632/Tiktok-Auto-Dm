@@ -1,1 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tiktok DM Bot</title>
 
+    <link rel="stylesheet" href="{{ url_for('static', 
+filename='style.css') }}">
+</head>
+<body>
+    
+    <div class="container">
+
+        <h1>Tiktok Auto DM Bot</h1>
+
+        <form id="dmForm">
+            <label>Usernames</label>
+            <textarea
+                name="usernames"
+                placeholder="Enter one username per line"
+                required
+            ></textarea>
+
+            <label>Message</label>
+
+            <textarea
+                name="message"
+                placeholder="Enter your DM Message"
+                required
+            ></textarea>    
+
+            <button type="submit">
+                Send DMs
+            </button>
+
+        </form>
+
+        <div id="result"></div>
+
+    </div>
+
+    <script>
+    const form = document.getElementbyID('dmForm')
+
+    form.addEventListener('submit', async (e) => {
+
+        e.preventDefault()   
+
+        const formData = new FormData(form)
+
+        const response = await fetch('/send-dms', {
+            method: 'POST',
+            body: formData
+        })
+
+        const data = await response.json()
+        
+        document.getElementbyID('result').innerHTML = data.status
+    })
+
+</script>
+
+</body>
+</html>
